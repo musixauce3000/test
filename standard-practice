@@ -1,0 +1,113 @@
+
+// { 1 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+function ExampleClass_A (  ) {  }
+function ExampleClass_B (  ) {  }
+function ExampleClass_C (  ) {  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// } 1 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 2 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+ExampleClass_B.prototype = Object.create( ExampleClass_A.prototype );
+ExampleClass_C.prototype = Object.create( ExampleClass_B.prototype );
+
+
+
+
+
+
+
+
+
+
+
+
+
+// } 2 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 3 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+var exampleInstance_W = new ExampleClass_A();	//  
+var exampleInstance_R = new ExampleClass_B();	//  randomly chosen names
+var exampleInstance_T = new ExampleClass_C();	//  
+
+
+
+
+
+
+
+
+
+
+
+// } 3 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 4 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	
+	
+ExampleClass_A.prototype.prop_a = "test a,";
+ExampleClass_B.prototype.prop_b = "test b,";
+ExampleClass_C.prototype.prop_c = "test c";
+
+
+
+
+// } 4 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 5 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	
+	
+console.log(
+	exampleInstance_T.prop_a,
+	exampleInstance_T.prop_b,
+	exampleInstance_T.prop_c,
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 5 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
