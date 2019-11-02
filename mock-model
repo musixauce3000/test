@@ -1,0 +1,112 @@
+// { 1 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+a = Object.create( null );
+b = Object.create( null );
+c = Object.create( null );
+cStruct_A		= a;
+proType_A		= b;
+proType_A.prototype	= c;
+cStruct_A.prototype	= b;
+proType_A.constructor	= a;
+delete a; delete b; delete c;
+
+a = Object.create( null );
+b = Object.create( null );
+c = Object.create( null );
+cStruct_B		= a;
+proType_B		= b;
+proType_B.prototype	= c;
+cStruct_B.prototype	= b;
+proType_B.constructor	= a;
+delete a; delete b; delete c;
+
+a = Object.create( null );
+b = Object.create( null );
+c = Object.create( null );
+cStruct_C		= a;
+proType_C		= b;
+proType_C.prototype	= c;
+cStruct_C.prototype	= b;
+proType_C.constructor	= a;
+delete a; delete b; delete c;
+
+// } 1 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 2 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+a			= Object.create( null );
+a.prototype		= proType_A;
+a.constructor		= cStruct_B;
+alt_proType_B		= a;
+delete proType_B;
+cStruct_B.prototype 	= alt_proType_B;
+delete a;
+
+a			= Object.create( null );
+a.prototype		= alt_proType_B;
+a.constructor		= cStruct_C;
+alt_proType_C		= a;
+delete proType_C;
+cStruct_C.prototype	= alt_proType_C;
+delete a;
+
+// } 2 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 3 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+a = Object.create( null );
+a.prototype		= proType_A;
+nstance_W		= a;
+delete a;
+
+a = Object.create( null );
+a.prototype		= alt_proType_B;
+nstance_R		= a;
+delete a;
+
+a = Object.create( null );
+a.prototype		= alt_proType_C;
+nstance_T		= a;
+delete a;
+
+// } 3 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 4 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+//  proType_A.prop_a = "test a";	//
+//  proType_B.prop_b = "test b";	//  Kind of cool that this works
+//  proType_C.prop_c = "test c";	//
+
+cStruct_A.prototype.prop_a = "test a,";
+cStruct_B.prototype.prop_b = "test b,";
+cStruct_C.prototype.prop_c = "test c";
+
+// } 4 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// { 5 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+console.log(				//  Kind of lame that this does't
+	nstance_W.prop_a,		//  
+	nstance_R.prop_b,		//  I mean it makes sense when you follow the
+	nstance_T.prop_c,		//  established logic, but at the same time
+);					//  it means that I'm missing something.
+
+console.log(
+	nstance_W.prototype.prop_a,	//  successful log
+	nstance_W.prototype.prop_b,	//  unsuccessful log
+	nstance_W.prototype.prop_c,	//  unsuccessful log
+);
+
+console.log(
+	nstance_R.prototype.prop_a,	//  unsuccessful log
+	nstance_R.prototype.prop_b,	//  successful log
+	nstance_R.prototype.prop_c,	//  unsuccessful log
+);
+
+console.log(
+	nstance_T.prototype.prop_a,	//  unsuccessful log
+	nstance_T.prototype.prop_b,	//  unsuccessful log
+	nstance_T.prototype.prop_c,	//  successful log
+);
+
+// 5 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
